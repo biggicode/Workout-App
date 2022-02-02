@@ -54,14 +54,14 @@ class App {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
 
-    this.#map.on('click', function (mapEv) {
-      this.#mapEvent = mapEv;
-      form.classList.remove('hidden');
-      inputDistance.focus();
-    });
+    this.#map.on('click', this._showForm.bind(this));
   }
 
-  _showForm() {}
+  _showForm(mapEv) {
+    this.#mapEvent = mapEv;
+    form.classList.remove('hidden');
+    inputDistance.focus();
+  }
 
   _toggleElevationField() {}
 
