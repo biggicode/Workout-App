@@ -40,10 +40,20 @@ if (navigator.geolocation) {
   );
 }
 
-form.addEventListener('submit', function () {
-  console.log(mapEvent);
+form.addEventListener('submit', function (e) {
+  //Peven form reload page
+  e.preventDefault();
+
+  //Clear form data
+  inputDistance.value =
+    inputCadence.value =
+    inputElevation.value =
+    inputDuration.value =
+      '';
+
   const { lat, lng } = mapEvent.latlng;
   const markerCoords = [lat, lng];
+
   //Add marker
   L.marker(markerCoords)
     .addTo(map)
