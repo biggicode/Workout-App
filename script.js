@@ -27,23 +27,25 @@ if (navigator.geolocation) {
       }).addTo(map);
 
       map.on('click', function (mapEvent) {
-        console.log(mapEvent);
-        const { lat, lng } = mapEvent.latlng;
-        const markerCoords = [lat, lng];
+        form.classList.remove('hidden');
+        inputDistance.focus();
+        // console.log(mapEvent);
+        // const { lat, lng } = mapEvent.latlng;
+        // const markerCoords = [lat, lng];
 
-        L.marker(markerCoords)
-          .addTo(map)
-          .bindPopup(
-            L.popup({
-              maxWidth: 230,
-              minWidth: 90,
-              autoClose: false,
-              closeOnClick: false,
-              className: 'running-popup',
-            })
-          )
-          .setPopupContent('Workout')
-          .openPopup();
+        // L.marker(markerCoords)
+        //   .addTo(map)
+        //   .bindPopup(
+        //     L.popup({
+        //       maxWidth: 230,
+        //       minWidth: 90,
+        //       autoClose: false,
+        //       closeOnClick: false,
+        //       className: 'running-popup',
+        //     })
+        //   )
+        //   .setPopupContent('Workout')
+        //   .openPopup();
       });
     },
     function () {
