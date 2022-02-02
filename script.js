@@ -13,9 +13,21 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 let map, mapEvent;
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
+class App {
+  constructor()
+
+  _getPosition() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this._loadMap
+       ,
+        function () {
+          alert('Sorry , we can not get your current position!');
+        }
+      );
+    }
+  }
+
+  _loadMap(position) {
       const { latitude } = position.coords;
       const { longitude } = position.coords;
 
@@ -33,12 +45,22 @@ if (navigator.geolocation) {
         form.classList.remove('hidden');
         inputDistance.focus();
       });
-    },
-    function () {
-      alert('Sorry , we can not get your current position!');
-    }
-  );
+  }
+
+  _showForm() {
+
+  }
+
+  _toggleElevationField() {
+
+  }
+
+  _newWorkout() {
+
+  }
 }
+
+
 
 form.addEventListener('submit', function (e) {
   //Peven form reload page
