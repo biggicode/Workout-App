@@ -14,53 +14,46 @@ const inputElevation = document.querySelector('.form__input--elevation');
 let map, mapEvent;
 
 class App {
-  constructor()
+  constructor() {
+    this._getPosition();
+  }
 
   _getPosition() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this._loadMap
-       ,
-        function () {
-          alert('Sorry , we can not get your current position!');
-        }
-      );
+      navigator.geolocation.getCurrentPosition(this._loadMap, function () {
+        alert('Sorry , we can not get your current position!');
+      });
     }
   }
 
   _loadMap(position) {
-      const { latitude } = position.coords;
-      const { longitude } = position.coords;
+    const { latitude } = position.coords;
+    const { longitude } = position.coords;
 
-      const coords = [latitude, longitude];
+    const coords = [latitude, longitude];
 
-      map = L.map('map').setView(coords, 12);
+    map = L.map('map').setView(coords, 12);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
 
-      map.on('click', function (mapEv) {
-        mapEvent = mapEv;
-        form.classList.remove('hidden');
-        inputDistance.focus();
-      });
+    map.on('click', function (mapEv) {
+      mapEvent = mapEv;
+      form.classList.remove('hidden');
+      inputDistance.focus();
+    });
   }
 
-  _showForm() {
+  _showForm() {}
 
-  }
+  _toggleElevationField() {}
 
-  _toggleElevationField() {
-
-  }
-
-  _newWorkout() {
-
-  }
+  _newWorkout() {}
 }
 
-
+const app = new App();
 
 form.addEventListener('submit', function (e) {
   //Peven form reload page
