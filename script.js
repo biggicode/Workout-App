@@ -33,7 +33,16 @@ if (navigator.geolocation) {
 
         L.marker(markerCoords)
           .addTo(map)
-          .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+          .bindPopup(
+            L.popup({
+              maxWidth: 230,
+              minWidth: 90,
+              autoClose: false,
+              closeOnClick: false,
+              className: 'running-popup',
+            })
+          )
+          .setPopupContent('Workout')
           .openPopup();
       });
     },
