@@ -106,6 +106,27 @@ class App {
     //Peven form reload page
     e.preventDefault();
 
+    //Get data from form
+    const type = inputType.value;
+    const distance = +inputDistance.value;
+    const duration = +inputDuration.value;
+
+    //Check type of workout
+    if (type === 'running') {
+      const cadence = +inputCadence.value;
+      //Check if data is valid
+      if (
+        !Number.isFinite(distance) ||
+        !Number.isFinite(duration) ||
+        !Number.isFinite(cadence)
+      )
+        return alert('You must insert a positive number');
+    }
+    if (type === 'cycling') {
+      const elevation = +inputElevation.value;
+      //Check if data is valid
+    }
+
     //Clear form data
     inputDistance.value =
       inputCadence.value =
