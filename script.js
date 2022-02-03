@@ -56,6 +56,7 @@ class Cycling extends Workout {
 class App {
   #map;
   #mapEvent;
+  #workouts = [];
 
   constructor() {
     this._getPosition();
@@ -114,6 +115,9 @@ class App {
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
+    const { lat, lng } = this.#mapEvent.latlng;
+    const markerCoords = [lat, lng];
+    let workout;
 
     //Check type of workout
     if (type === 'running') {
@@ -125,6 +129,8 @@ class App {
         !allPositive(distance, duration, cadence)
       )
         return alert('You must insert a positive number');
+
+      workout = new Running(markerCoords, distance, duration, cadence);
     }
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
@@ -135,17 +141,13 @@ class App {
         !allPositive(distance, duration)
       )
         return alert('You must insert a positive number');
+
+      workout = new Cycling(markerCoords, distance, duration, elevation);
     }
 
-    //Clear form data
-    inputDistance.value =
-      inputCadence.value =
-      inputElevation.value =
-      inputDuration.value =
-        '';
-
-    const { lat, lng } = this.#mapEvent.latlng;
-    const markerCoords = [lat, lng];
+    //Add workout
+    this.#workouts.push(workout);
+    console.log(workout);
 
     //Add marker
     L.marker(markerCoords)
@@ -161,6 +163,13 @@ class App {
       )
       .setPopupContent('Workout')
       .openPopup();
+
+    //Clear form data
+    inputDistance.value =
+      inputCadence.value =
+      inputElevation.value =
+      inputDuration.value =
+        '';
   }
 }
 
