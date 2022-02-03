@@ -103,6 +103,9 @@ class App {
   }
 
   _newWorkout(e) {
+    const validInputs = (...inputs) =>
+      inputs.every(input => Number.isFinite(input));
+
     //Peven form reload page
     e.preventDefault();
 
@@ -114,17 +117,17 @@ class App {
     //Check type of workout
     if (type === 'running') {
       const cadence = +inputCadence.value;
+
       //Check if data is valid
-      if (
-        !Number.isFinite(distance) ||
-        !Number.isFinite(duration) ||
-        !Number.isFinite(cadence)
-      )
+      if (!validInputs(distance, duration, cadence))
         return alert('You must insert a positive number');
     }
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
+
       //Check if data is valid
+      if (!validInputs(distance, duration, elevation))
+        return alert('You must insert a positive number');
     }
 
     //Clear form data
