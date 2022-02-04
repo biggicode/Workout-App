@@ -29,10 +29,10 @@ class Workout {
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
   }
-
-  click() {
-    this.clicks++;
-  }
+  //After working with local storage objects will not inherit all the methods that they did before
+  // click() {
+  //   this.clicks++;
+  // }
 }
 
 class Running extends Workout {
@@ -185,7 +185,6 @@ class App {
 
     //Add workout
     this.#workouts.push(workout);
-    console.log(workout);
 
     //Render workout on map
     this._renderWorkoutMarker(workout);
@@ -283,7 +282,7 @@ class App {
       },
     });
 
-    workout.click();
+    // workout.click();
   }
 
   _setLocalStorage() {
@@ -292,7 +291,6 @@ class App {
 
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
-    console.log(data);
 
     if (!data) return;
 
